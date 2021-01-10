@@ -1,4 +1,4 @@
-name := "text-format-parsing"
+name := "ast-object-mappers"
 
 version := "0.1"
 

@@ -1,6 +1,6 @@
-package me.parser.ikvf
+package me.mappers.ikvf
 
-import me.parser.ikvf.decoder.{Decoder, DecodingResult}
+import me.mappers.ikvf.decoder.{Decoder, DecodingResult}
 
 /**
   * Imaginary Key Value Format

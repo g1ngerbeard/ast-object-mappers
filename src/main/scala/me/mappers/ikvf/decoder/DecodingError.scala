@@ -1,4 +1,4 @@
-package me.parser.ikvf.decoder
+package me.mappers.ikvf.decoder
 
 sealed trait DecodingError
 

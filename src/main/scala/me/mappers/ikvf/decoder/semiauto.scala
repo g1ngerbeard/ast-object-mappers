@@ -1,9 +1,9 @@
-package me.parser.ikvf.decoder
+package me.mappers.ikvf.decoder
 
 import cats.implicits._
 import magnolia.{CaseClass, Magnolia}
-import me.parser.ikvf.AST._
-import me.parser.ikvf.decoder.DecodingError.{FieldDecodingError, ObjectDecodingError}
+import me.mappers.ikvf.AST._
+import me.mappers.ikvf.decoder.DecodingError.{FieldDecodingError, ObjectDecodingError}
 
 object semiauto {
 

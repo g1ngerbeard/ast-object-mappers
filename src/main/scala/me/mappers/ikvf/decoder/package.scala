@@ -1,4 +1,4 @@
-package me.parser.ikvf
+package me.mappers.ikvf
 
 package object decoder {
 

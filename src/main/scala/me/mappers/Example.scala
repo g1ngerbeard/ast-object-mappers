@@ -1,13 +1,13 @@
-package me.parser
+package me.mappers
 
 import java.time.LocalDate
 
 import cats.implicits._
-import me.parser.ikvf.IKVF
-import me.parser.ikvf.implicits._
-import me.parser.ikvf.decoder.Decoder
-import me.parser.ikvf.decoder.Decoder.{fieldDecoder, fieldValueDecoder}
-import me.parser.ikvf.decoder.semiauto.deriveDecoder
+import me.mappers.ikvf.IKVF
+import me.mappers.ikvf.implicits._
+import me.mappers.ikvf.decoder.Decoder
+import me.mappers.ikvf.decoder.Decoder.{fieldDecoder, fieldValueDecoder}
+import me.mappers.ikvf.decoder.semiauto.deriveDecoder
 
 import scala.util.Try
 

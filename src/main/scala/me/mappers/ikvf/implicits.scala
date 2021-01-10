@@ -1,9 +1,9 @@
-package me.parser.ikvf
+package me.mappers.ikvf
 
 import cats.implicits._
 import cats.Monad
-import me.parser.ikvf.AST._
-import me.parser.ikvf.decoder.Decoder
+import me.mappers.ikvf.AST._
+import me.mappers.ikvf.decoder.Decoder
 
 object implicits {
 

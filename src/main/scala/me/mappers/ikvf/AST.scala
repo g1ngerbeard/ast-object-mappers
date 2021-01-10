@@ -1,8 +1,8 @@
-package me.parser.ikvf
+package me.mappers.ikvf
 
 import cats.implicits._
-import me.parser.ikvf.decoder.DecodingError.ASTParsingFailed
-import me.parser.ikvf.decoder.DecodingResult
+import me.mappers.ikvf.decoder.DecodingError.ASTParsingFailed
+import me.mappers.ikvf.decoder.DecodingResult
 
 object AST {
 
