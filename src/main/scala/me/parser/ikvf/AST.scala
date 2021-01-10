@@ -2,7 +2,7 @@ package me.parser.ikvf
 
 import cats.implicits._
 import me.parser.ikvf.decoder.DecodingError.ASTParsingFailed
-import me.parser.ikvf.decoder.{Decoder, DecodingResult}
+import me.parser.ikvf.decoder.DecodingResult
 
 object AST {
 
@@ -16,6 +16,7 @@ object AST {
 
   case class IKVFArray(objects: Seq[IKVFObject]) extends IKVFValue
 
+  // todo - use parser combinators for better error reporting, e.g. return line in error msg
   def parse(raw: String): DecodingResult[IKVFValue] =
     raw
       .split("\\n{2,}")

@@ -79,13 +79,11 @@ object ExampleApp extends App {
 
   println(IKVF.decode[UserData](users))
 
-  val payments = """id:1 birthDate:1989-01-09
-    |registrationDate:2020-10-11 role:client
-    |userName:user1
+  val payments = """id:1
+    |from:foo to:bar amt:1000
     |
-    |id:2 birthDate:1995-04-01
-    |registrationDate:2020-10-11 role:client
-    |userName:user1 score:123""".stripMargin
+    |id:123 to:foo2 from:bar2
+    |ref:smth123 amt:200""".stripMargin
 
   println(IKVF.decode[PaymentData](payments))
 
