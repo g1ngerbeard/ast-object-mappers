@@ -2,15 +2,29 @@ package me.mappers.ikvf.decoder
 
 import cats.implicits._
 import me.mappers.ikvf.AST._
-import me.mappers.ikvf.decoder.DecodingError.FieldDecodingError
+import me.mappers.ikvf.decoder.DecodingError.{ArrayDecodingError, FieldDecodingError}
 
 object Decoder {
 
   def apply[T: Decoder]: Decoder[T] = implicitly[Decoder[T]]
 
   implicit def sequenceDecoder[T: Decoder]: Decoder[Seq[T]] = {
-    case IKVFArray(objects) => objects.traverse(Decoder[T].decode)
-    case unexpected         => FieldDecodingError(s"Expected IKVFArray got ${unexpected.getClass}").asLeft
+    case IKVFArray(objects) =>
+      val results = objects
+        .map(Decoder[T].decode)
+        .zipWithIndex
+        .collect {
+          case (Left(error), idx)        => Left(idx -> error)
+          case (Right(decodedObject), _) => Right(decodedObject)
+        }
+        .partitionEither(identity)
+
+      results match {
+        case (Nil, decodedObjects) => Right(decodedObjects)
+        case (errorsWithIdx, _)    => Left(ArrayDecodingError(errorsWithIdx))
+      }
+
+    case unexpected => FieldDecodingError(s"Expected IKVFArray got ${unexpected.getClass}").asLeft
   }
 
   implicit def optionalFieldValueDecoder[T: Decoder]: Decoder[Option[T]] = {

@@ -1,3 +1,5 @@
+## Mapping AST into data structures in Scala
+
 ### Motivation
 To show how to build decoders (mappers?) between AST and Scala data structures using such mechanisms 
 like typeclasses, typeclass instance derivation and how to make those instanses composable. 
@@ -94,16 +96,23 @@ implicit val paymentDataDecoder: Decoder[PaymentData] =
 ```
 
 ### Error handling and reporting
+ 
+Decoding errors as sum type:
+```scala
+sealed trait DecodingError
 
-TBD
-
-skip if there is no parser combinators?
+object DecodingError {
+  case class ASTParsingFailed(reason: String) extends DecodingError
+  case class ArrayDecodingError(errorsWithIdx: Seq[(Int, DecodingError)]) extends DecodingError
+  case class ObjectDecodingError(errors: Seq[DecodingError]) extends DecodingError
+  case class FieldDecodingError(reason: String) extends DecodingError
+}
+```
+Do not fail fast and report errors list in `ObjectDecodingError` and `ArrayDecodingError`
 
 ### Automatic derivation of typeclasses using Magnolia
-`magnolia` library allow to implement automatic derivation of typeclasses without direct usage of Scala macros, e.g.:
+`magnolia` library allows to implement automatic derivation of typeclasses without direct usage of Scala macros, e.g.:
 
 ```scala
 implicit val userDataDecoder: Decoder[UserData] = deriveDecoder[UserData]
 ```
-
-TBD
